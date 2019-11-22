@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Graficos</title>
+        <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+{% include './headerdeSesiones.html.twig' %}
+<script src="./lib/highcharts/code/highcharts.js"></script>
+<script src="./lib/highcharts/code/modules/exporting.js"></script>
+
+<!--GRAFICO GENERAL POR PORCENTAJE DEL USO DE HELADERAS-->
+<div id="containerHeladera"   style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+//recibe por twig un arreglo heladera con dos posiciones, donde tienen valores numericos
+var tiene = {{hTiene}};
+var notiene = {{hNoTiene}};
+
+Highcharts.chart('containerHeladera', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafico General de uso de Heladera'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: [{
+            name: 'Tiene',
+            y: tiene
+        }, {
+            name: 'NO Tiene',
+            y: notiene,
+            
+        }]
+    }]
+});
+        </script>
+<!--GRAFICO GENERAL POR PORCENTAJE DEL USO DE Electricidad-->
+<div id="containerElectricidad"   style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+var tiene = {{eTiene}};
+var notiene = {{eNoTiene}};
+
+Highcharts.chart('containerElectricidad', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafico General de uso de Electricidad'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: [{
+            name: 'Tiene',
+            y: tiene
+        }, {
+            name: 'NO Tiene',
+            y: notiene,
+            
+        }]
+    }]
+});
+        </script>
+<!--GRAFICO GENERAL POR PORCENTAJE DEL USO DE Mascota-->
+<div id="containerMascota"   style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+var tiene = {{mTiene}};
+var notiene = {{mNoTiene}};
+
+Highcharts.chart('containerMascota', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafico General de uso de Mascota'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: [{
+            name: 'Tiene',
+            y: tiene
+        }, {
+            name: 'NO Tiene',
+            y: notiene,
+            
+        }]
+    }]
+});
+        </script>
+<!--GRAFICO GENERAL POR PORCENTAJE DEL USO DE Vivienda-->
+<div id="containerVivienda"   style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+var chapa = {{Chapa}};
+var madera = {{Madera}};
+var material = {{Material}};
+Highcharts.chart('containerVivienda', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafico General de tipos de vivienda.'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: [{
+            name: 'Material',
+            y: material
+        }, {
+            name: 'Chapa',
+            y: chapa,
+            
+        }, {
+            name: 'Madera',
+            y: madera,
+            
+        }]
+    }]
+});
+        </script>
+<!--GRAFICO GENERAL POR PORCENTAJE DEL USO DE Tipo de Agua-->
+<div id="containerAgua"   style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+var corriente = {{agua.corriente}};
+var pozo = {{agua.pozo}};
+var myData = {{array}};
+var mySeries = [];
+for (var i = 0; i < myData.length; i++) {
+     mySeries.push([myData[i]]);               
+} 
+Highcharts.chart('containerAgua', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafico General de tipos de Agua.'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: mySeries
+    }]
+});
+        </script>
+<!--GRAFICO GENERAL POR PORCENTAJE DEL USO DE Tipo de Gas-->
+<div id="containerGas"   style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+var gas = {{gas.gas}};
+var le = {{gas.le}};
+var electrica = {{gas.electrica}};
+Highcharts.chart('containerGas', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Grafico General de tipos de Calefaccion.'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Porcentaje',
+        colorByPoint: true,
+        data: [
+         {% set x = 0 %}
+         {% set y = 1 %}
+         {% for tc in tipoCalefaccion %}
+           {% for c in cantidadCalefaccion%}
+             {% set aux = 1%}
+             {% if aux == y %}
+               {% set numero = c %}
+               {% set aux = (aux + 1) %} 
+             {% endif%}
+           {% endfor %} 
+           {% set y = (y + 1) %}
+           {% if x == 0 %}
+            {name: '{{tc.nombre}}' , y: {{numero}} }, 
+            {% set x = 1 %} 
+           {% elseif x < cantidad %}
+              {name: '{{tc.nombre}}' , y: {{numero}},},
+            {% else %}
+                {name: '{{tc.nombre}}' , y: {{numero}},}
+           {% endif %}
+           {% set x = (x + 1) %}    
+          {% endfor %} 
+        ]
+    }]
+});
+        </script>
+{% include './footer.html.twig' %}
+    </body>
+</html>

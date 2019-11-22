@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+  </head>
+ 
+  
+  <body>
+      {% include './headerdeSesiones.html.twig' %}
+      {% include './menuDeListarPaciente.html.twig' %}
+      <section class="container mt-5 pt-5 mb-5 pb-5">
+        <div class="container">
+                
+              <div class="w-100"></div>
+              <div class="w-100 pb-4"></div>
+              <span class="col-12  border-primary border border-left-0 border-right-0 border-top-0">
+                  <div class="col-12 ">
+                      <div class="d-flex align-content-stretch flex-wrap">
+                          <div class="mr-auto p-1">DNI</div>
+                          <div class="mr-auto p-1">Apellido</div>
+                          <div class="mr-auto p-1">Nombre</div> 
+                        </div>
+                  </div>
+                  </span>
+                
+                {% for resultado in resultados %}
+                <span class="col-12  border-primary border border-left-0 border-right-0 border-top-0">
+                      <div class="col-12 ">
+                          <div class="d-flex align-content-stretch flex-wrap">
+                              <div class="mr-auto p-1">{{resultado.numero}}</div>
+                              <div class="mr-auto p-1">{{resultado.apellido}}</div>
+                              <div class="mr-auto p-1">{{resultado.nombre}}</div>
+
+                              <div class="p-1">
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{resultado.numero}}">
+                                            Mostrar
+                                        </button>
+                              </div>
+                              <div class="modal fade" id="{{resultado.numero}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content bg-dark text-white">
+                                            <div class="modal-header">
+                                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                
+                                            </div>
+                                            <div class="modal-body">
+                                                    <div class="d-flex align-content-stretch flex-wrap">
+                                                            <div class="mr-auto p-2"><div>NOMBRE:</div></div>
+                                                            <div class="p-2"><div>{{resultado.nombre}}</div></div>
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                            <div class="mr-auto p-2"><div>Apellido:</div></div>
+                                                            <div class="p-2"><div>{{resultado.apellido}}</div></div>
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                            <div class="mr-auto p-2"><div>DOMICILIO:</div></div>
+                                                            <div class="p-2"><div>{{resultado.domicilio}}</div></div>
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                            <div class="mr-auto p-2"><div>Telefono:</div></div>
+                                                            <div class="p-2"><div>{{resultado.tel}}</div></div>
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                            <div class="mr-auto p-2"><div>Fecha Nacimiento:</div></div>
+                                                            <div class="p-2"><div>{{resultado.fechaNac}}</div></div>
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                            <div class="mr-auto p-2"><div>Genero:</div></div>
+                                                            {% if resultado.genero == 1 %}
+                                                              <div class="p-2"><div>masculino</div></div>
+                                                            {% else %}
+                                                              <div class="p-2"><div>femenino</div></div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                          {% for obraSocial in obrasSociales %}
+                                                            {% if obraSocial.idObraSocial == resultado.obraSocial %}
+                                                              <div class="mr-auto p-2"><div>Obra Social:</div></div>
+                                                              <div class="p-2"><div>{{obraSocial.nombre}}</div></div>
+                                                            {% endif %}
+                                                          {% endfor %}
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">
+                                                          {% for tipoDocumento in tipoDocumentos %}
+                                                            {% if tipoDocumento.idTipoDocumento == resultado.tipoDocumento %}
+                                                              <div class="mr-auto p-2"><div>Tipo Documento:</div></div>
+                                                              <div class="p-2"><div>{{tipoDocumento.nombre}}</div></div>
+                                                            {% endif %}
+                                                          {% endfor %}
+                                                        </div>
+                                                        <div class="d-flex align-content-stretch flex-wrap">                                  
+                                                            <div class="mr-auto p-2"><div>Numero de Documento:</div></div>
+                                                            <div class="p-2"><div>{{resultado.numero}}</div></div>
+                                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            {% for permiso in permisos %}
+                              {% if permiso.nombre == 'edit'%}
+                                <div class="p-1"><a href="?c=Paciente&m={{permiso.nombre}}&id={{resultado.idPaciente}}"><button type="button" class="btn btn-warning btn-sm text-white">Editar</button></a></div>
+                              {% endif %}
+                              <!-- Aca esta el boton para ir a la vista (que se llama crudControlesDePaciente)con los controles de salud de este paciente. Hay completar el permiso.nombre == 'a el permiso para ver los controles' y completar el href  -->
+                              {% if permiso.nombre == ' '%}
+                                <div class="p-1"><a href=" "><button type="button" class="btn btn-success btn-sm text-white">Controles de Salud</button></a></div>
+                              {% endif %}
+                              <!--  -->
+                              {% if permiso.nombre == 'delete'%}
+                                <div class="p-1"><a href="?c=Paciente&m={{permiso.nombre}}&id={{resultado.idPaciente}}"><button type="button" class="btn btn-danger btn-sm text-white">Eliminar</button></a></div>
+                              {% endif %}
+                            {% endfor %}
+                             
+                            </div>
+                      </div>
+                </span> 
+                {% endfor %}
+                      
+                
+                    
+            </div>
+          </div>
+
+      </section>
+      {% include './paginador.html.twig' %}
+      {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>

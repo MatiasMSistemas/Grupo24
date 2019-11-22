@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+    </head>
+    <body>
+           
+        {% include './headerdeSesiones.html.twig' %}
+    <!--contenedor de todo el cuerpo del alta de Pacientes-->
+    <div class="alert alert-dark" role="alert">
+                Configuración General del Sitio
+    </div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-7 pb-0">
+                    <div class="card">
+                        <form action="?c=Sitio&m=onEdit" method="post" id="formularioConfiguracion">
+                            <div class="card-body">
+                              
+                              <h4 class="card-title text-primary">Titulo Actual:</h4>
+                               
+                              <input name="titulo" type="text" value= "{{ sitio.titulo }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                              
+                              <h4 class="card-title pt-3 text-primary">Descripcion Actual:</h4>
+                              <textarea rows="4"  name="descripcion" form="formularioConfiguracion">
+                                    {{sitio.descripcion}}
+                              </textarea>
+                              <h4 class="card-title pt-3 text-primary">Mail de Contacto Actual:</h4>
+                              <input name="mail" type="text" value= "{{sitio.mail}}" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                              
+                              <h4 class="card-title pt-3 text-primary">Cantidad de Elementos Actual:</h4>
+                              <input name="cantidadElementos" type="number"  min="0" max="100" step="1" value= "{{sitio.cantidadElementos}}"  >  
+                              
+                            </div>
+                            <button type="submit" class="btn btn-primary ml-4">Guardar cambios</button> 
+                        </form>
+                        
+                    </div>   
+                </div>
+                
+        </div>
+    </div>
+   
+    {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>

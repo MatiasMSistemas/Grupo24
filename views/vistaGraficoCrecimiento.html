@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Reporte de Curva de Crecimiento</title>
+
+		<style type="text/css"></style>
+	</head>
+	<body>
+            {% include './headerdeSesiones.html.twig' %}
+            {% include './menuDeFiltrarPaciente.html.twig' %}
+<script src="./lib/highcharts/code/highcharts.js"></script>
+<script src="./lib/highcharts/code/modules/series-label.js"></script>
+<script src="./lib/highcharts/code/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+//recibe por twig un arreglo de valores numericos [45,47,785,485]
+var myData = {{array}};
+var mySeries = [];
+    for (var i = 0; i < myData.length; i++) {
+        mySeries.push([myData[i]]);
+         
+    }
+//recibe por twig un arreglo de string de fechas
+var fechasFinal= JSON.parse('{{ fechas|raw}}'); 
+Highcharts.chart('container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Curva de Crecimiento del Paciente'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: fechasFinal
+    },
+    yAxis: {
+        title: {
+            text: 'Crecimiento'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Paciente',
+        data: mySeries
+    }]
+});
+		</script>
+        {% include './footer.html.twig' %}
+	</body>
+</html>

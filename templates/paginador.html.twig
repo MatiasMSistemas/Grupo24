@@ -1,0 +1,29 @@
+
+<!-- este es un nav que esta auto-centrado en el recipiente que se lo ponga -->
+<nav  aria-label="Page navigation example">
+<ul class="pagination justify-content-md-center">
+    <!-- este li puede ser removido o no  -->
+    <!-- este es un twig for que recorre cada unidad del valor de cantidadBotones que es una varaible que recibe para poder saber cuantos botones generar y por cada uno genera un boton  -->
+{% if controlador == 'ControlSalud' %}
+    {% for i in 1..cantidadBotones %}
+        {% if (i==1) %}
+                <li class="page-item"><a class="page-link" href="?c={{controlador}}&m={{metodo}}&inicio=0&id={{idPaciente}}"></a> {{ i }}</a></li>
+        {% endif %}
+        {% if (i>1) %}
+                {% set desde = ((i - 1) * cantidad) %}
+                <li class="page-item"><a class="page-link" href="?c={{controlador}}&m={{metodo}}&inicio={{desde}}&id={{idPaciente}}"></a> {{ i }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% for i in 1..cantidadBotones %}
+        {% if (i==1) %}
+                <li class="page-item"><a class="page-link" href="?c={{controlador}}&m={{metodo}}&inicio=0"></a> {{ i }}</a></li>
+        {% endif %}
+        {% if (i>1) %}
+                {% set desde = ((i - 1) * cantidad) %}
+                <li class="page-item"><a class="page-link" href="?c={{controlador}}&m={{metodo}}&inicio={{desde}}"></a> {{ i }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</ul>
+</nav>   

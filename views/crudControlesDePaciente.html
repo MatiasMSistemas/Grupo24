@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+  </head>
+ <body>
+      {% include './headerdeSesiones.html.twig' %}
+      <section class="container mt-5 pt-5 mb-5 pb-5">
+        <div class="container">
+            <div class="w-100">
+                <!-- agregar al href los parametros para agregar un control de salud para este usuario -->
+                <a href="?c=Paciente&m={{metodo2}}"><button type="button" class="btn btn-success btn-sm text-white">Volver al listado de pacientes</button></a></div>
+            <div class="w-100 pb-4"></div>
+            <div class="col-12 ">
+                    {% for resultado in resultados %}
+                        <div class="p-3 mb-2 bg-white text-dark">
+                                <div class="d-flex align-content-stretch flex-wrap">
+                                    <div class="mr-auto p-1">{{resultado.fecha}}</div>
+                                    <div class="p-1">
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#{{resultado.idControlSalud}}">
+                                            Mostrar
+                                        </button>
+                                    </div>
+                                    <div class="modal fade" id="{{resultado.idControlSalud}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content bg-dark text-white">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Edad:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.edad}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Fecha:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.fecha}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Peso:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.peso}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Vacunas Completas:</div></div>
+                                                                    {% if resultado.vacunasCompletas == 1 %}
+                                                                        <div class="p-2"><div>Si</div></div>
+                                                                    {% else %}
+                                                                        <div class="p-2"><div>No</div></div>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Maduracion Acorde:</div></div>
+                                                                    {% if resultado.maduracionAcorde == 1 %}
+                                                                        <div class="p-2"><div>Si</div></div>
+                                                                    {% else %}
+                                                                        <div class="p-2"><div>No</div></div>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Examen de Fisico Normal:</div></div>
+                                                                    {% if resultado.exFisicoNormal == 1 %}
+                                                                        <div class="p-2"><div>Si</div></div>
+                                                                    {% else %}
+                                                                        <div class="p-2"><div>No</div></div>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Examen Fisico Observaciones:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.exFisicoObservaciones}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>PC:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.pc}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>PPC:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.ppc}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Talla:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.talla}}</div></div>
+                                                                </div>
+                                                                <div class="d-flex align-content-stretch flex-wrap">
+                                                                    <div class="mr-auto p-2"><div>Alimentacion:</div></div>
+                                                                    <div class="p-2"><div>{{resultado.alimentacion}}</div></div>
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- falta poner los href con los parametros para editar y eliminar -->
+                                        {% for permiso in permisos %}
+                                            {% if permiso.nombre == 'edit'%}
+                                                <div class="p-1"><a href="?c=ControlSalud&m={{permiso.nombre}}&id={{resultado.idControlSalud}}&idp={{idPaciente}}"><button type="button" class="btn btn-warning btn-sm text-white">Editar Info</button></a></div>
+                                            {% endif %}
+                                            
+                                            {% if permiso.nombre == 'delete'%}
+                                                <div class="p-1"><a href="?c=ControlSalud&m={{permiso.nombre}}&idC={{resultado.idControlSalud}}&id={{idPaciente}}"><button type="button" class="btn btn-danger btn-sm text-white">Eliminar</button></a></div>
+                                            {% endif %}
+                                        {% endfor %} 
+                                  </div>
+                              </div>
+                              {% endfor %}
+                </div>
+            </div>
+          </div>
+    </section>
+      {% include './paginador.html.twig' %}
+      {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>

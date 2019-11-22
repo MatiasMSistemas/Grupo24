@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+  </head>
+ 
+  
+  <body>
+      {% include './headerdeSesiones.html.twig' %}
+      {% include './menuDeFiltrarUsuario.html.twig' %}
+      <section class="container mt-5 pt-5 mb-5 pb-5">
+        <div class="container">
+            <div class="row col-12">
+              <div class="col-12 bg-dark d-flex justify-content-center">
+                  <form class="pt-2" action="?c=Usuario&m=onFiltrar&inicio=0" method="post" >
+                      
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <input name="userName" type="text" class="form-control" pattern="[a-zA-Z0-9]+"placeholder="Ingresar el Nombre de usuario">
+                            </div>
+                        <div class="form-group col-md-6">
+                          <input name="lastName" type="text" class="form-control" pattern="[a-zA-Z]+"placeholder="Ingresar el Apellido de la persona">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <input name="firstName" type="text" class="form-control" pattern="[a-zA-Z]+"placeholder="Ingresar el Nombre de la persona">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group pl-2">
+                              <select name="activo" class="form-control">
+                                <option value="0" selected>Activos</option>
+                                <option value="1" >Bloqueados</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 text-white ">
+                            <label class="form-check-label">
+                              <input name="fechaDeCreacion" type="checkbox" class="form-check-input">
+                              Ordenado por Fecha de Creación
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6 text-white">
+                            <label class="form-check-label">
+                              <input name="fechaModificacion" type="checkbox" class="form-check-input">
+                              Ordenado por Fecha de Modificación
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6 text-white">
+                            <label class="form-check-label">
+                              <input name="desendente" type="checkbox" class="form-check-input">
+                              Ordenado en Forma Descendente
+                            </label>
+                        </div>
+                      </div> 
+                     
+                      <button type="submit" class="btn btn-primary btn-sm pt-0 pb-0 mb-3 ml-2">Buscar</button>
+                    </form>
+              </div>
+            </div>
+          </div>
+
+      </section>
+      {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>

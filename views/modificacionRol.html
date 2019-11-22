@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include './headerdeSesiones.html.twig' %}
+
+    <div class="alert alert-dark" role="alert">
+                Modificacion de los permisos del Rol {{rol}}
+    </div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+                <div class="col col-lg-7">
+
+                        <section class="container pt-5 pb-5 ml-30 mr-30">
+            <!-- en esta vista aparece un listado de todos los permisos existentes -->
+            <!-- por cada permiso se recorre con for los permisos que ya estan asignados a este usuario -->
+            <!-- si mi permiso aparece en permisos, entonces muestro el imput del permiso con el checkbox para marcado -->
+            <!-- para esto se usa una variable existe -->
+            <!-- si encuentra un permiso suyo en los permisos, pone existe en true -->
+            <!-- cuando termina de comparar permiso con todos mispermisos significa que no lo tiene asignado, entonce existe no habra sido modificado a true-->
+            <!-- cuando sale del form de mis permisos si existe sigue siendo false pone el checkbox sin marca-->
+                                        <form action="" method="POST">
+                                                <div class="container" >
+                                                
+                                                {% for permiso in permisos %}                    
+                                                <div class="form-check">
+                                                        <label class="form-check-label">{{ permiso.nombre }}
+                                                        {% for miPermiso in misPermisos %}
+                                                                {% set existe = 'false' %}
+                                                                {% if miPermiso.nombre == permiso.nombre %}
+                                                                        {% set existe = 'true' %}
+                                                                        <input name="{{permiso.id}}" type="checkbox" class="form-check-input" checked>
+                                                                {% endif %}
+
+                                                                {% if existe == 'false' %}
+                                                                     <input name="{{permiso.id}}" type="checkbox" class="form-check-input" >
+                                                                    
+                                                                {% endif %}
+
+                                                        {% endfor %}
+                                                        
+                                                        </label>
+                                                </div>
+                                                {% endfor %}
+                                                </div>
+                                               
+                                                
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </form>
+                        </section>
+                </div>
+        </div>
+    </div>
+    
+        {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>

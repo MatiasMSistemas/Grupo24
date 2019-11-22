@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include './headerdeSesiones.html.twig' %}
+    <!--contenedor de todo el cuerpo del alta de Pacientes-->
+    <div class="alert alert-dark" role="alert">
+                Modificacion de informacion del Paciente
+    </div>
+    <a href="?c=Paciente&m=listar&inicio=0">
+      <button type="button" class="btn btn-primary btn-sm">Volver a listado</button>
+    </a>
+    <section class="container pt-5 pb-5 ml-30 mr-30">
+            <form action="?c=Paciente&m=onEdit&id={{paciente.idPaciente}}&inicio=0" method="post">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label  class="col-form-label">Apellido</label>
+                        <input name="apellido" type="text" pattern="[a-zA-Z]+" class="form-control" id="inputApellido" value= {{paciente.apellido}} >
+                    </div>
+                    <div class="form-group col-md-6">
+                            <label  class="col-form-label">Nombre</label>
+                            <input name="nombre" type="text" pattern="[a-zA-Z]+" class="form-control" id="inputNombre"  value= {{paciente.nombre}} >
+                    </div>
+                    <div class="form-group col-md-6">
+                            <label  class="col-form-label">Fecha de Nacimiento</label>
+                            <input name="fecha_nac" type="date" class="form-control" id="inputNacimiento"  value= {{paciente.fechaNac}} >
+                    </div>
+                    <div class="form-group col-md-6">
+                            <label  class="col-form-label">Sexo</label>
+                            <select name="genero" id="inputSexo" class="form-control">
+                                    {% if paciente.genero == 1 %}
+                                    <option value="1" selected>Masculino</option>
+                                    {% else %}
+                                    <option value="1"  >Masculino</option>
+                                    {% endif %}
+                                    {% if paciente.genero == 0 %}
+                                    <option value="0" selected>Femenino</option>
+                                    {% else %}
+                                    <option value="0" >Femenino</option>
+                                    {% endif %}
+                            </select> 
+                                
+                        </div> 
+                    <div class="form-group col-md-6">
+                            <label  class="col-form-label">Tipo de Documento</label>
+                            <select name="tipo_doc_id" id="inputSexo" class="form-control">
+                              {% for itemTipoDoc in TipoDocumentos %}
+                              {% if paciente.tipoDocumento == itemTipoDoc.id %}
+                                      <option value="{{ itemTipoDoc.idTipoDocumento }}" selected>{{itemTipoDoc.nombre}}</option>
+                              {% else %}
+                                      <option value= "{{ itemTipoDoc.idTipoDocumento }}" >{{itemTipoDoc.nombre}}</option>
+                              {% endif %}
+                              {% endfor %} 
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label  class="col-form-label">N° De Documento</label>
+                                <input name="numero" type="number" min="0" max="99999999"class="form-control" id="inputDNI" value= {{paciente.numero}} >
+                            </div>
+                    
+                    </div>
+                    <div class="form-group">
+                      <label  class="col-form-label">Direccion</label>
+                      <input name="domicilio" type="text" class="form-control" id="inputDireccion" value= {{paciente.domicilio}}>
+                    </div>
+                    <div class="form-group">
+                            <label class="col-form-label">N° Telefono</label>
+                            <input name="tel" type="number" class="form-control" min="0" max="99999999" id="inputTelefono" value= {{paciente.tel}}
+                          </div>
+                    
+                    <div class="form-row">
+                      
+                      <div class="form-group col-md-4">
+                        <label class="col-form-label">Obra Social</label>
+                        <select name="obra_social_id" id="inputOS" class="form-control">
+                          {% for itemObra in TiposDeObraSocial %}
+                              {% if paciente.obraSocial == itemObra.idObraSocial %}
+                                      <option value= "{{ itemObra.idObraSocial }}" selected>{{itemObra.nombre}} {{ itemObra.id }}</option>
+                              {% else %}
+                                      <option value= "{{ itemObra.idObraSocial }}" >{{itemObra.nombre}}</option>
+                              {% endif %}
+                          {% endfor %} 
+                                 
+                            </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                     
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </form>
+        
+    </section>
+    
+    {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>

@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+     {% if rolActual != "pediatra" %}
+       <div class="p-2">
+        <a class="pl-4 pr-4 pt-4" href= "?c=Paciente&m=add" >    
+           <button type="button" class="btn btn-light">Agregar</button>
+        </a>
+      </div>
+    {% endif %}
+    {% if rolActual != "pediatra" %}
+     <div class="p-2">
+         <a class="pl-4 pr-4 pt-4" href= "?c=Paciente&m=filtrar" >    
+           <button type="button" class="btn btn-light">Filtrar</button>
+         </a>
+      </div>
+    {% endif %}  
+</nav> 

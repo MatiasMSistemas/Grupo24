@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-end navbar-light bg-light">
+        <div class="mr-auto p-2">
+                 <a class="navbar-brand" href="?c=Usuario&m=cargarInicio" >{{titulo}}</a>
+        </div>
+
+        <div class="p-2">
+                <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tus Roles
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for rol in misRoles %}
+                                {% if rol.nombre != "paciente" %}
+
+                                <a class="dropdown-item" href="?c=Usuario&m=onChangeRolActual&rol={{rol.nombre}}"> {{rol.nombre}}</a>
+
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        </div>
+        </div>
+        <div class="p-2">
+                <a href="?c=LogIn&m=logOut">
+                        <button type="button" class="btn btn-primary btn-sm">Cerrar Sesion</button>
+                   </a>
+        </div>
+      </div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.css" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include './headerdeSesiones.html.twig' %}
+    <!--contenedor de todo el cuerpo del alta de Pacientes-->
+    <div class="alert alert-dark" role="alert">
+                Cargar el Control De Salud
+    </div> 
+    <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-7">
+            <div class="alert alert-secondary" role="alert">
+                    Paciente: {{ paciente.apellido }} {{ paciente.nombre}}  {{paciente.numero}}
+            </div>
+            <!-- FORMULARIO PARA CARGAR UN NUEVO CONTROL DE SALUD  -->
+            <form action="?c=ControlSalud&m=onAdd&id={{paciente.idPaciente}}" method="post">
+                <div class="form-group">
+                  <label for="exampleInputEdad">Edad:</label>
+                  <input name="edad" min="0" max="150" step="1" type="number" class="form-control" id="imputEdad">
+                </div> 
+                <div class="form-groupx">
+                    <label for="exampleInputPeso">Peso:</label>
+                    <input name="peso" type = "number"  min="0" max="400" step = "1" class="form-control" id="imputPeso">
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputVacuna">Vacunas Completas:</label>
+                    <select name="vacunas_completas"  class="form-control">
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                    </select>
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputMaduracion">Maduracion Acorde:</label>
+                    <select name="maduracion_acorde"  class="form-control">
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                    </select>
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputObsGeneral">Observaiones de Maduracion Acorde:</label>
+                    <input name="maduracion_observaciones" type="text" class="form-control" id="imputObsGeneral">
+                </div> 
+                <div class="form-groupx">
+                    <label for="exampleInputFisico">Fisico Normal:</label>
+                    <select name="ex_fisico_normal"  class="form-control">
+                        <option value="1">SI</option>
+                        <option value="0">NO</option>
+                    </select>
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputPeso">Observaciones de Fisico:</label>
+                    <input name="ex_fisico_observaciones" type="text" class="form-control">
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputPC">PC:</label>
+                    <input name="pc" type="number" class="form-control" id="imputPC">
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputPPC">PPC:</label>
+                    <input name="ppc" type="number" class="form-control" id="imputPPC">
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputTaller">Talla:</label>
+                    <input name="talla" type = "number"  min="1" max="250" step = "1" class="form-control" id="imputTalla">
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputAlimentacion">Alimetacion:</label>
+                    <input name="alimentacion" type="text" class="form-control" id="imputAlimentacion">
+                </div>
+                <div class="form-groupx">
+                    <label for="exampleInputObsGeneral">Observaiones Generales:</label>
+                    <input name="observaciones_generales" type="text" class="form-control" id="imputObsGeneral">
+                </div>               
+                
+                <button type="submit" class="mt-4 btn btn-primary">Cargar</button>
+            </form>
+
+          </div>
+        </div>
+    </div>
+    
+    {% include './footer.html.twig' %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./lib/js/bootstrap.js"></script>
+    </body>
+
+    
+</html>
